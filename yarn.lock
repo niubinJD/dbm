@@ -139,15 +139,15 @@
   resolved "https://registry.npm.taobao.org/@angular-eslint/builder/download/@angular-eslint/builder-0.0.1-alpha.18.tgz#3a3ac2d93782ce24a99457df93b4755912cca8a9"
   integrity sha1-OjrC2TeCziSplFffk7R1WRLMqKk=
 
-"@angular/animations@9.1.2":
-  version "9.1.2"
-  resolved "https://registry.npm.taobao.org/@angular/animations/download/@angular/animations-9.1.2.tgz#01bb52d5a8813701bfacbba99338d88cfc0da9b4"
-  integrity sha1-AbtS1aiBNwG/rLupkzjYjPwNqbQ=
+"@angular/animations@9.1.4":
+  version "9.1.4"
+  resolved "https://registry.npm.taobao.org/@angular/animations/download/@angular/animations-9.1.4.tgz#22f64a062103d4903f2c7d862889a88fc6553bc7"
+  integrity sha1-IvZKBiED1JA/LH2GKImoj8ZVO8c=
 
 "@angular/cdk@^9.0.0":
-  version "9.2.1"
-  resolved "https://registry.npm.taobao.org/@angular/cdk/download/@angular/cdk-9.2.1.tgz#9a590b8d4671fe2fa47648297b5ea372267d238f"
-  integrity sha1-mlkLjUZx/i+kdkgpe16jciZ9I48=
+  version "9.2.2"
+  resolved "https://registry.npm.taobao.org/@angular/cdk/download/@angular/cdk-9.2.2.tgz#776be85aa55146f00dcd4909b81c67da47286c75"
+  integrity sha1-d2voWqVRRvANzUkJuBxn2kcobHU=
   optionalDependencies:
     parse5 "^5.0.0"
 
@@ -3614,9 +3614,9 @@ dashdash@^1.12.0:
     assert-plus "^1.0.0"
 
 date-fns@^2.10.0:
-  version "2.12.0"
-  resolved "https://registry.npm.taobao.org/date-fns/download/date-fns-2.12.0.tgz#01754c8a2f3368fc1119cf4625c3dad8c1845ee6"
-  integrity sha1-AXVMii8zaPwRGc9GJcPa2MGEXuY=
+  version "2.13.0"
+  resolved "https://registry.npm.taobao.org/date-fns/download/date-fns-2.13.0.tgz#d7b8a0a2d392e8d88a8024d0a46b980bbfdbd708"
+  integrity sha1-17igotOS6NiKgCTQpGuYC7/b1wg=
 
 date-format@^2.0.0:
   version "2.1.0"
@@ -7318,10 +7318,10 @@ neo-async@^2.5.0, neo-async@^2.6.0, neo-async@^2.6.1:
   resolved "https://registry.npm.taobao.org/neo-async/download/neo-async-2.6.1.tgz#ac27ada66167fa8849a6addd837f6b189ad2081c"
   integrity sha1-rCetpmFn+ohJpq3dg39rGJrSCBw=
 
-ng-zorro-antd@9.0.1:
-  version "9.0.1"
-  resolved "https://registry.npm.taobao.org/ng-zorro-antd/download/ng-zorro-antd-9.0.1.tgz?cache=0&sync_timestamp=1587122578785&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fng-zorro-antd%2Fdownload%2Fng-zorro-antd-9.0.1.tgz#a6f8b50e53afca4a8b1a811d3c172572f56b6947"
-  integrity sha1-pvi1DlOvykqLGoEdPBclcvVraUc=
+ng-zorro-antd@9.1.0:
+  version "9.1.0"
+  resolved "https://registry.npm.taobao.org/ng-zorro-antd/download/ng-zorro-antd-9.1.0.tgz#83afda582f73b75f71836e9ad3f2a7444e205daa"
+  integrity sha1-g6/aWC9zt19xg26a0/KnRE4gXao=
   dependencies:
     "@angular/cdk" "^9.0.0"
     "@ant-design/icons-angular" "^9.0.0"
@@ -7984,7 +7984,7 @@ parse5@4.0.0:
 
 parse5@^5.0.0:
   version "5.1.1"
-  resolved "https://registry.npm.taobao.org/parse5/download/parse5-5.1.1.tgz?cache=0&sync_timestamp=1586991218581&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fparse5%2Fdownload%2Fparse5-5.1.1.tgz#f68e4e5ba1852ac2cadc00f4555fff6c2abb6178"
+  resolved "https://registry.npm.taobao.org/parse5/download/parse5-5.1.1.tgz#f68e4e5ba1852ac2cadc00f4555fff6c2abb6178"
   integrity sha1-9o5OW6GFKsLK3AD0VV//bCq7YXg=
 
 parseqs@0.0.5:

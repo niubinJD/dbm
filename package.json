@@ -92,9 +92,9 @@
     "node": ">=10.13.0"
   },
   "dependencies": {
-    "@angular/animations": "9.1.2",
+    "@angular/animations": "9.1.4",
     "@types/mysql": "2.15.8",
     "@types/nedb": "1.8.9",
-    "ng-zorro-antd": "9.0.1"
+    "ng-zorro-antd": "9.1.0"
   }
 }
