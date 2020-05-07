@@ -20,7 +20,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/ng-zorro-antd/ng-zorro-antd.min.css"
             ],
             "scripts": [],
             "customWebpackConfig": {
@@ -113,7 +114,8 @@
             "karmaConfig": "src/karma.conf.js",
             "scripts": [],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/ng-zorro-antd/ng-zorro-antd.min.css"
             ],
             "assets": [
               "src/assets"
@@ -158,7 +160,7 @@
       }
     }
   },
-  "defaultProject": "angular-electron",
+  "defaultProject": "dbm",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
@@ -167,5 +169,8 @@
     "@schematics/angular:directive": {
       "prefix": "app"
     }
+  },
+  "cli": {
+    "analytics": "7123e786-f9cb-4f74-bc8b-4af802d9e675"
   }
 }
