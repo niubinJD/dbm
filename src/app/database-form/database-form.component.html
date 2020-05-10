@@ -1,0 +1,44 @@
+<form nz-form  [formGroup]="validateForm">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="connectionName">连接名</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input nz-input formControlName="connectionName" id="connectionName" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="host">主机名或IP地址</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" >
+          <input nz-input formControlName="host" id="host" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="port">端口</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" >
+          <input nz-input formControlName="port" id="port"/>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="username">用户名</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
+          <input nz-input formControlName="username" id="username" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="password">密码</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
+          <input nz-input formControlName="password" id="password" type="password" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <div nz-row>
+        <div nz-col [nzSpan]="12" [nzOffset]="6">
+          <label nz-checkbox formControlName="remember">
+            <span>保存密码</span>
+          </label>
+        </div>
+      </div>
+  </form>

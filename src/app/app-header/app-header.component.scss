@@ -1,0 +1,23 @@
+[nz-icon] {
+    // margin-right: 6px;
+    font-size: 30px;
+}
+
+.header-list {
+    display: flex;
+    justify-content: flex-start;
+    margin: auto -50px;
+    flex-flow: row nowrap;
+    .header-list-item {
+        display: flex;
+        width: 64px;
+        height: 64px;
+        flex-shrink: 1;
+        flex-flow: column nowrap;
+        justify-content: center;
+    }
+    
+    .header-list-item:hover {
+        background-color: #b9dfff;
+    }
+}
