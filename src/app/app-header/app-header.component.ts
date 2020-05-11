@@ -1,9 +1,7 @@
 import { ConnectManagerService } from './../core/services/connection-manager/connect-manager.service';
-import { Component, OnInit, ViewChild, TemplateRef, ChangeDetectionStrategy, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
-import { NzModalService, NzModalRef } from 'ng-zorro-antd/modal';
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { DatabaseFormComponent } from '../database-form/database-form.component';
-import { DataBase } from '../entity/database';
-import { DataBaseFormStatus } from '../enum/database-form-status';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
@@ -33,9 +31,10 @@ export class AppHeaderComponent implements OnInit {
   }
 
   confirmEvent() {
-    this.form.submitForm();
-    this.isVisible = false;
-    this.update.emit();
+    this.form.submitForm(() => {
+      this.isVisible = false;
+      this.update.emit();
+    });
   }
 
   execTest() {
@@ -62,6 +61,6 @@ export class AppHeaderComponent implements OnInit {
     }).finally(() => {
       this.load = false;
       this.changeRef.detectChanges();
-    })
+    });
  }
 }

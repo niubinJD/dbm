@@ -28,10 +28,20 @@ export class AppComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-    // this.data = this.store.getDataStore('metadata').find({}) ;
+    this.flushData();
   }
 
-  update(){
+  update(): void{
+    this.flushData();
+  }
 
+  private flushData(): void {
+    this.store.getDataStore('metadata').find({}).exec((err, doc) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      this.data = doc;
+     });
   }
 }

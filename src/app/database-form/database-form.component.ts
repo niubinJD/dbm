@@ -3,6 +3,7 @@ import { DataBase } from './../entity/database';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DataStoreService } from '../core/services';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'database-form',
@@ -17,7 +18,7 @@ export class DatabaseFormComponent implements OnInit {
 
   validateForm: FormGroup;
 
-  constructor(private fb: FormBuilder,private store: DataStoreService) { }
+  constructor(private fb: FormBuilder,private store: DataStoreService,private modal: NzModalService) { }
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
@@ -30,11 +31,22 @@ export class DatabaseFormComponent implements OnInit {
     });
   }
 
-  submitForm(): DataBase {
+  submitForm(okCallBack?: Function): DataBase {
     if (!this.validateForm.valid) {
       return;
     }
-    this.store.getDataStore('metadata').insert(this.validateForm.value as DataBase);
+    this.store.getDataStore('metadata').insert(this.validateForm.value as DataBase, err => {
+      if(!err) {
+        // if (okCallBack) okCallBack();
+        return !!okCallBack && okCallBack();
+      }
+      if (err['errorType'] == 'uniqueViolated') {
+        this.modal.error({ nzTitle: '提示', nzContent: `连接名${err['key']}已存在!`, nzMask: false, nzGetContainer: () => document.body});
+        return;
+      }
+      debugger
+      console.log('insert error', err);
+    });
   }
 
 

@@ -1,19 +1,26 @@
 import 'reflect-metadata';
+
 import '../polyfills';
 
 import { BrowserModule } from '@angular/platform-browser';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgModule } from '@angular/core';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+
 import { CoreModule } from './core/core.module';
+
 import { SharedModule } from './shared/shared.module';
 
 import { AppRoutingModule } from './app-routing.module';
 
 // NG Translate
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { HomeModule } from './home/home.module';
@@ -35,10 +42,13 @@ import { AppComponent } from './app.component';
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
+
 import { ApiFill, ApiTwoTone, CodeTwoTone} from '@ant-design/icons-angular/icons';
 
 import { AppHeaderComponent } from './app-header/app-header.component';
+
 import { DatabaseFormComponent } from './database-form/database-form.component';
+
 import { NzFormModule } from 'ng-zorro-antd/form';
 
 import { NzInputModule } from 'ng-zorro-antd/input';
@@ -47,9 +57,12 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 
 import { NzMessageModule } from 'ng-zorro-antd/message';
 
+import { NzTreeModule } from 'ng-zorro-antd/tree';
+import { DatabaseListComponent } from './database-list/database-list.component';
+
 const icons: IconDefinition[] = [ ApiFill, ApiTwoTone,CodeTwoTone ];
 @NgModule({
-  declarations: [AppComponent, AppHeaderComponent, DatabaseFormComponent],
+  declarations: [AppComponent, AppHeaderComponent, DatabaseFormComponent, DatabaseListComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -68,6 +81,7 @@ const icons: IconDefinition[] = [ ApiFill, ApiTwoTone,CodeTwoTone ];
     NzInputModule,
     NzCheckboxModule,
     NzMessageModule,
+    NzTreeModule,
     NzIconModule.forRoot(icons),
     TranslateModule.forRoot({
       loader: {

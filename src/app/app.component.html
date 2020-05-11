@@ -5,7 +5,9 @@
        <app-header (update)="update()"></app-header>
     </nz-header>
     <nz-layout>
-        <nz-sider nzTheme="light">Sider</nz-sider>
+        <nz-sider nzTheme="light">
+          <database-list [data]="data"></database-list>
+        </nz-sider>
         <nz-content>Content</nz-content>
       </nz-layout>
     <nz-footer>Footer</nz-footer>
