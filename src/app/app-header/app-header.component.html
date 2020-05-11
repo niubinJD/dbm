@@ -3,12 +3,19 @@
         <i nz-icon nzType="api" nzTheme="twotone" title="连接" (click)="openModal()"></i>
     </div>
     <div class="header-list-item">
-        <i nz-icon nzType="code" nzTheme="twotone" title="新建查询"></i>
+        <i nz-icon nzType="code" nzTheme="twotone" title="新建查询" (click)="openModal()"></i>
     </div>
 </div>
 
-<ng-template #modalFooter>
-  <button nz-button nzType="primary" style="float: left;" (click)="execTest(modalInstance)" [nzLoading]="load">连接测试</button>
-  <button nz-button nzType="default" (click)="modalInstance && modalInstance.destroy()">取消</button>
-  <button nz-button nzType="primary" (click)="confirmEvent(modalInstance)">确定</button>
-</ng-template>
+<nz-modal #modal [(nzVisible)]="isVisible" nzTitle="新建连接" [nzMask]="false" (nzOnCancel)="isVisible = false">
+    <nz-content>
+        <database-form #form></database-form>
+    </nz-content>
+    <ng-container *nzModalFooter>
+        <button nz-button nzType="primary" style="float: left;" (click)="execTest()" [nzLoading]="load">连接测试</button>
+        <button nz-button nzType="default" (click)="isVisible = false">取消</button>
+        <button nz-button nzType="primary" (click)="confirmEvent($event)">确定</button>
+      </ng-container>
+  </nz-modal>
+
+

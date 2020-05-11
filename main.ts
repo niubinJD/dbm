@@ -13,17 +13,13 @@ function createWindow(): BrowserWindow {
 
   const electronScreen = screen;
   const size = electronScreen.getPrimaryDisplay().workAreaSize;
-  const real_width = size.width * 0.8
-  const real_height = size.height * 0.85
-  const x = (size.width - real_width) / 2;
-  const y = (size.height - real_height) / 2;
 
   // Create the browser window.
   win = new BrowserWindow({
-    x: x,
-    y: y,
-    width: real_width,
-    height: real_height,
+    x: 0,
+    y: 0,
+    width: size.width,
+    height: size.height,
     webPreferences: {
       nodeIntegration: true,
       allowRunningInsecureContent: (serve) ? true : false,
@@ -54,7 +50,6 @@ function createWindow(): BrowserWindow {
     // when you should delete the corresponding element.
     win = null;
   });
-
   return win;
 }
 

@@ -1,5 +1,5 @@
 import { ConnectManagerService } from './../core/services/connection-manager/connect-manager.service';
-import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, ChangeDetectionStrategy, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { NzModalService, NzModalRef } from 'ng-zorro-antd/modal';
 import { DatabaseFormComponent } from '../database-form/database-form.component';
 import { DataBase } from '../entity/database';
@@ -9,79 +9,59 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 @Component({
   selector: 'app-header',
   templateUrl: './app-header.component.html',
-  styleUrls: ['./app-header.component.scss']
+  styleUrls: ['./app-header.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppHeaderComponent implements OnInit {
-  
-  @ViewChild('modalFooter') footer: TemplateRef<any>;
 
-  modalInstance:NzModalRef;
+  @ViewChild('form') form: DatabaseFormComponent;
 
-  load = false;
+  load: boolean = false;
 
-  constructor(private modal: NzModalService, private manager: ConnectManagerService, private message: NzMessageService) { }
+  isVisible: boolean = false;
+
+  @Output() update = new EventEmitter<any>();
+
+
+  constructor(private modal: NzModalService, private manager: ConnectManagerService, private message: NzMessageService,private changeRef:ChangeDetectorRef) { }
 
   ngOnInit(): void {
   }
 
   openModal(): void {
-    this.load = false;
-    this.modalInstance = this.modal.create({
-      nzTitle: '新建连接',
-      nzContent: DatabaseFormComponent,
-      nzGetContainer: () => document.body,
-      nzClosable: true,
-      nzMask: false,
-      nzComponentParams: {
-        data: {} as DataBase,
-        status: DataBaseFormStatus.NEW
-      },
-      nzFooter: this.footer,
-      nzOnOk: () => new Promise(resolve => setTimeout(resolve, 1000))
-    });
+    this.isVisible = true;
   }
 
-
-  /**
-   * 保存数据库信息
-   * @param instance
-   */
-  confirmEvent(instance: NzModalRef) {
-    const component: DatabaseFormComponent = instance.getContentComponent();
-    component.submitForm();
-    instance.destroy();
+  confirmEvent() {
+    this.form.submitForm();
+    this.isVisible = false;
+    this.update.emit();
   }
 
-  /**
-   * 测试数据库连接
-   * @param instance 
-   */
-  execTest(instance: NzModalRef) {
-    let self = this;
-    if (this.load) {
-      return;
-    }
+  execTest() {
     this.load = true;
-    const component: DatabaseFormComponent = instance.getContentComponent();
-    const info  = component.getDatabaseInfo();
+    const info  = this.form.getDatabaseInfo();
     const conn = this.manager.getConnection(info);
-    conn.connect(err => {
-      if (err) {
-        // TODO  连接测试的消息提示
-        setTimeout(() => this.load = false, 1000);
-        console.log(err.message, self.load);
-        // this.modalInstance.componentInstance()
-        // this.message.error(err.message)
-        // debugger
-        // this.modal.error({ nzTitle: '提示', nzContent: err.code, nzMask: false})
-        // debugger
-        return;
-      }
-      self.load = false;
-      console.log("连接成功");
+    let p = new Promise((reslove,reject) => {
+      conn.connect((error) => {
+        if(error) {
+          reject(error);
+          return;
+        }
+        reslove(null);
+      });
+    });
 
-      // this.modal.error({ nzTitle: '提示', nzContent: "连接成功", nzMask: false})
+    p.then(() => {
+      console.log('success');
+      this.modal.success({ nzTitle: '提示', nzContent: "连接成功", nzMask: false, nzGetContainer: () => document.body});
+    }).catch(error => {
+      console.log(error);
+      // debugger
+      this.modal.error({ nzTitle: '提示', nzContent: error.code, nzMask: false, nzGetContainer: () => document.body});
+    }).finally(() => {
+      this.load = false;
+      this.changeRef.detectChanges();
     })
-  }
-
+ }
 }

@@ -5,5 +5,5 @@ export enum DataBaseFormStatus {
      */
     NEW,
     // 编辑连接信息
-    EDIT
+    EDIT,
 }

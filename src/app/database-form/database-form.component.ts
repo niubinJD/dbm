@@ -2,6 +2,7 @@ import { DataBaseFormStatus } from './../enum/database-form-status';
 import { DataBase } from './../entity/database';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { DataStoreService } from '../core/services';
 
 @Component({
   selector: 'database-form',
@@ -16,7 +17,7 @@ export class DatabaseFormComponent implements OnInit {
 
   validateForm: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,private store: DataStoreService) { }
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
@@ -33,8 +34,7 @@ export class DatabaseFormComponent implements OnInit {
     if (!this.validateForm.valid) {
       return;
     }
-    // save 
-    // console.log(this.validateForm.value as DataBase);
+    this.store.getDataStore('metadata').insert(this.validateForm.value as DataBase);
   }
 
 

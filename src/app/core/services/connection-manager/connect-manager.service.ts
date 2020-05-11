@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Connection } from 'mysql';
+import { Connection, ConnectionConfig } from 'mysql';
 import { DataBase } from '../../../entity/database';
 
 import * as db from 'mysql';
@@ -16,7 +16,7 @@ export class ConnectManagerService {
     if (this.manager.has(database.connectionName)) {
       return this.manager.get(database.connectionName);
     }
-    const connection = db.createConnection({host: database.host, port: 3306, user: database.username, password: database.password} as db.ConnectionConfig);
+    const connection = db.createConnection({host: database.host, port: 3306, user: database.username, password: database.password} as ConnectionConfig);
     // connection.connect();
     this.manager.set(database.connectionName, connection);
     return connection;
