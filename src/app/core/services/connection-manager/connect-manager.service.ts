@@ -12,14 +12,35 @@ export class ConnectManagerService {
   manager: Map<string, Connection> = new Map();
   constructor() {}
 
-  getConnection(database: DataBase): Connection {
-    if (this.manager.has(database.connectionName)) {
-      return this.manager.get(database.connectionName);
-    }
-    const connection = db.createConnection({host: database.host, port: 3306, user: database.username, password: database.password} as ConnectionConfig);
-    // connection.connect();
-    this.manager.set(database.connectionName, connection);
-    return connection;
+  // getConnection(database: DataBase): Connection {
+  //   if (this.manager.has(database.connectionName)) {
+  //     return this.manager.get(database.connectionName);
+  //   }
+  //   const connection = db.createConnection({host: database.host, port: 3306, user: database.username, password: database.password, connectTimeout: 5000} as ConnectionConfig);
+  //   // connection.connect();
+  //   this.manager.set(database.connectionName, connection);
+  //   return connection;
+  // }
+
+  getConnection(database: DataBase): Promise<any> {
+    const config = {
+      host: database.host,
+      port: database.port,
+      user: database.username,
+      password: database.password,
+      // connectTimeout: 10000
+    } as ConnectionConfig;
+    console.log("链接参数:", config);
+    return new Promise((reslove,reject) => {
+      const conn = db.createConnection(config);
+      conn.connect((error) => {
+        if(error) {
+          reject(error);
+        } else {
+          reslove(conn);
+        }
+      });
+    });
   }
 
   close(database: DataBase): void {

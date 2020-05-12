@@ -1,1 +1,42 @@
-<nz-tree [nzData]="nodes" nzAsyncData (nzClick)="nzEvent($event)" (nzExpandChange)="nzEvent($event)"> </nz-tree>
+<div class="list">
+  <!-- <nz-tree [nzData]="trees" nzBlockNode nzAsyncData nzShowIcon [nzExpandedIcon]="multiExpandedIconTpl" (nzDblClick)="open($event)" (nzExpandChange) = "expandChange($event)">
+      <ng-template #multiExpandedIconTpl let-node let-origin="origin">
+            <i *ngIf="origin.type === 1" (dblclick)="open(node)" nz-icon nzType="cloud" nzTheme="fill" [class.active]="node.isExpanded" [class.no-active]="!node.isExpanded"></i>
+            <i *ngIf="origin.type === 2" nz-icon nzType="database" nzTheme="fill" [class.active]="node.isExpanded" [class.no-active]="!node.isExpanded"></i>
+      </ng-template>
+  </nz-tree> -->
+
+  <nz-tree #tree
+  nzBlockNode
+  [nzData]="trees"
+  nzShowIcon
+  (nzDblClick)="open($event)"
+  (nzExpandChange)="expandChange($event)"
+  [nzTreeTemplate]="nzTreeTemplate"
+  [nzExpandedIcon]="multiExpandedIconTpl"
+></nz-tree>
+
+
+<ng-template #multiExpandedIconTpl let-node let-origin="origin">
+  <ng-container *ngIf="!origin.isLeaf">
+    <i  nz-icon [nzType]="node.isExpanded ? 'down' : 'right'" nzTheme="outline" style="font-size: 12px;"></i>
+  </ng-container>
+</ng-template>
+<ng-template #nzTreeTemplate let-node let-origin="origin">
+  <span class="custom-node">
+    <span>
+      <i *ngIf="origin.type === 1" (dblclick)="open(node)" nz-icon nzType="cloud" nzTheme="fill" [class.active]="node.isExpanded" [class.no-active]="!node.isExpanded"></i>
+      <i *ngIf="origin.type === 2" nz-icon nzType="database" nzTheme="fill" [class.active]="node.isExpanded" [class.no-active]="!node.isExpanded"></i>
+      <i *ngIf="origin.type === 3" nz-icon nzType="table" nzTheme="outline"></i>
+      <i *ngIf="origin.type === 4" nz-icon nzType="table" nzTheme="outline"></i>
+
+      <!-- <i nz-icon [nzType]="node.isExpanded ? 'folder-open' : 'folder'" (click)="openFolder(node)"></i> -->
+      <span class="folder-name">{{ node.title }}</span>
+    </span>
+    <!-- <span *ngIf="node.isLeaf">
+      <i nz-icon nzType="file"></i>
+      <span class="file-name">{{ node.title }}</span>
+    </span> -->
+  </span>
+</ng-template>
+</div>

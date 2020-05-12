@@ -1,0 +1,31 @@
+// .list {
+//     margin-left: 15px;
+// }
+.active {
+    color: green;
+}
+
+:host::ng-deep nz-tree-node-title {
+    padding: 0!important;
+}
+.custom-node {
+    cursor: pointer;
+    line-height: 24px;
+    margin-left: 0px;
+    display: inline-block;
+  }
+
+  .file-name,
+  .folder-name {
+    margin-left: 4px;
+  }
+
+  .file-desc,
+  .folder-desc {
+    padding: 0 8px;
+    display: inline-block;
+    background: #87ceff;
+    color: #ffffff;
+    position: relative;
+    left: 12px;
+  }

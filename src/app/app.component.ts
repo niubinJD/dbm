@@ -10,6 +10,7 @@ import { DataBase } from './entity/database';
 })
 export class AppComponent implements OnInit {
   data: Array<DataBase> = [];
+  a;
   constructor(
     public electronService: ElectronService,
     private translate: TranslateService,
@@ -17,7 +18,7 @@ export class AppComponent implements OnInit {
   ) {
     translate.setDefaultLang('en');
     console.log('AppConfig', AppConfig);
-
+    this.a = AppConfig;
     if (electronService.isElectron) {
       console.log(process.env);
       console.log('Mode electron');

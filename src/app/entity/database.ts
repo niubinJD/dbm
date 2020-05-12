@@ -6,7 +6,7 @@ export interface DataBase {
     _id: string;
     connectionName: string;
     host: string;
-    port: string;
+    port: number;
     username: string;
     password: string;
     remember: boolean;

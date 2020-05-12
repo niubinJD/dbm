@@ -3,12 +3,12 @@ import { Component, OnInit, ViewChild, ChangeDetectionStrategy, ChangeDetectorRe
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { DatabaseFormComponent } from '../database-form/database-form.component';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { Connection } from 'mysql';
 
 @Component({
   selector: 'app-header',
   templateUrl: './app-header.component.html',
   styleUrls: ['./app-header.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppHeaderComponent implements OnInit {
 
@@ -20,8 +20,11 @@ export class AppHeaderComponent implements OnInit {
 
   @Output() update = new EventEmitter<any>();
 
+  private testFn: Promise<any>;
 
-  constructor(private modal: NzModalService, private manager: ConnectManagerService, private message: NzMessageService,private changeRef:ChangeDetectorRef) { }
+
+  constructor(private modal: NzModalService, private manager: ConnectManagerService, private message: NzMessageService) {
+   }
 
   ngOnInit(): void {
   }
@@ -40,27 +43,14 @@ export class AppHeaderComponent implements OnInit {
   execTest() {
     this.load = true;
     const info  = this.form.getDatabaseInfo();
-    const conn = this.manager.getConnection(info);
-    let p = new Promise((reslove,reject) => {
-      conn.connect((error) => {
-        if(error) {
-          reject(error);
-          return;
-        }
-        reslove(null);
-      });
-    });
-
-    p.then(() => {
+    this.manager.getConnection(info)
+    .then((conn: Connection) => {
+      // conn.destroy();
       console.log('success');
       this.modal.success({ nzTitle: '提示', nzContent: "连接成功", nzMask: false, nzGetContainer: () => document.body});
     }).catch(error => {
       console.log(error);
-      // debugger
       this.modal.error({ nzTitle: '提示', nzContent: error.code, nzMask: false, nzGetContainer: () => document.body});
-    }).finally(() => {
-      this.load = false;
-      this.changeRef.detectChanges();
-    });
+    }).finally(() => this.load = false);
  }
 }

@@ -43,7 +43,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
-import { ApiFill, ApiTwoTone, CodeTwoTone} from '@ant-design/icons-angular/icons';
+import { ApiFill, ApiTwoTone, CodeTwoTone, CloudFill, DatabaseFill, FolderOutline, FolderOpenOutline, RightOutline, DownOutline} from '@ant-design/icons-angular/icons';
 
 import { AppHeaderComponent } from './app-header/app-header.component';
 
@@ -58,9 +58,10 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 
 import { NzTreeModule } from 'ng-zorro-antd/tree';
-import { DatabaseListComponent } from './database-list/database-list.component';
 
-const icons: IconDefinition[] = [ ApiFill, ApiTwoTone,CodeTwoTone ];
+import { DatabaseListComponent } from './database-list/database-list.component';
+const icons: IconDefinition[] = [ ApiFill, ApiTwoTone, CodeTwoTone, CloudFill, DatabaseFill,FolderOutline, FolderOpenOutline,RightOutline, DownOutline ];
+
 @NgModule({
   declarations: [AppComponent, AppHeaderComponent, DatabaseFormComponent, DatabaseListComponent],
   imports: [
@@ -95,4 +96,5 @@ const icons: IconDefinition[] = [ ApiFill, ApiTwoTone,CodeTwoTone ];
   bootstrap: [AppComponent],
   exports: []
 })
+
 export class AppModule {}
