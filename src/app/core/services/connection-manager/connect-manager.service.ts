@@ -25,7 +25,7 @@ export class ConnectManagerService {
   getConnection(database: DataBase): Promise<any> {
     const config = {
       host: database.host,
-      port: database.port,
+      port: 3306,
       user: database.username,
       password: database.password,
       // connectTimeout: 10000

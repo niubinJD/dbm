@@ -93,9 +93,8 @@
   },
   "dependencies": {
     "@angular/animations": "9.1.4",
-    "@types/mysql": "2.15.8",
+    "@mysql/xdevapi": "8.0.20",
     "@types/nedb": "1.8.9",
-    "mysql": "2.18.1",
     "nedb": "1.8.0",
     "ng-zorro-antd": "9.1.0"
   }
