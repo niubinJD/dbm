@@ -20,6 +20,8 @@ export function getClient(connection: string | URI, options: PoolingOptions): Cl
 export function getSession(connection: string | URI): Promise<Session>;
 export function getVersion(): string;
 export function expr(expr: string, options: any): any;
+export const Mode: any;
+export const LockContention: any;
 
 /*~ You can declare types that are available via importing the module */
 export interface URI {
@@ -79,6 +81,20 @@ export class Session {
     rollbackTo(name: string): Promise<any>;
 }
 
-export class Schema {}
+export class Schema {
+    createCollection(name: string, options: any): Collection;
+    dropCollection(name: string): Promise<boolean>;
+    existsInDatabase(): Promise<boolean>;
+    getClassName(): string;
+    getCollection(name: string): Collection;
+    getCollectionAsTable(name: string): Table;
+    getCollections(): Array<Collection>;
+    getName(): string;
+    getTable(name: string): Table;
+    getTables(): Array<Table>;
+    inspect(): any;
+}
 
 export class SqlExecute {}
+export class Collection {}
+export class Table {}
